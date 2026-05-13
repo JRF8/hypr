@@ -33,7 +33,7 @@ local fileManager = "dolphin"
 local menu        = "hyprlauncher"
 local launcher    = "rofi -show drun -show-icons"
 local screenshot  = "hyprshot -m region --clipboard-only"
-
+local pipewire    = "gentoo-pipewire-launcher restart &"
 
 -------------------
 ---- AUTOSTART ----
@@ -44,7 +44,12 @@ local screenshot  = "hyprshot -m region --clipboard-only"
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
 -- Or execute your favorite apps at launch like this:
 --
--- hl.on("hyprland.s
+
+hl.on("hyprland.start", function ()
+  hl.exec_cmd(pipewire)
+end)
+
+
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
@@ -225,7 +230,7 @@ hl.config({
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
 
         touchpad = {
-            natural_scroll = false,
+            natural_scroll = true,
         },
     },
 })
