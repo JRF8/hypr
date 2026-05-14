@@ -34,6 +34,7 @@ local menu        = "hyprlauncher"
 local launcher    = "rofi -show drun -show-icons"
 local screenshot  = "hyprshot -m region --clipboard-only"
 local pipewire    = "gentoo-pipewire-launcher restart &"
+local wallpaper   = "$HOME/.local/bin/wallpaper.sh"
 
 -------------------
 ---- AUTOSTART ----
@@ -61,6 +62,7 @@ end)
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("XDG_DATA_DIRS", "$HOME/.local/share:/usr/local/share:/usr/share")
 
 
 -----------------------
@@ -261,6 +263,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(launcher))
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(screenshot))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(wallpaper))
 local closeWindowBind = hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
@@ -359,3 +362,4 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
