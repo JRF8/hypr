@@ -64,7 +64,6 @@ hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("XDG_DATA_DIRS", "$HOME/.local/share:/usr/local/share:/usr/share")
 
-
 -----------------------
 ----- PERMISSIONS -----
 -----------------------
@@ -92,7 +91,7 @@ hl.env("XDG_DATA_DIRS", "$HOME/.local/share:/usr/local/share:/usr/share")
 hl.config({
     general = {
         gaps_in  = 5,
-        gaps_out = 20,
+        gaps_out = 5,
 
         border_size = 2,
 
@@ -111,12 +110,12 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 10,
+        rounding       = 5,
         rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
-        active_opacity   = 1.0,
-        inactive_opacity = 1.0,
+        active_opacity   = 0.8,
+        inactive_opacity = 0.7,
 
         shadow = {
             enabled      = true,
@@ -363,3 +362,24 @@ hl.window_rule({
     float = true,
 })
 
+hl.config({
+  input = {
+    kb_options = "caps:none"
+  }
+}
+)
+
+hl.bind(mainMod .. " + code:35", hl.dsp.submap("passthrough"))
+--hl.bind(mainMod .. " + code:35", function()
+--  hl.dsp.submap("passthrough")
+--  hl.notification.create({text = "Keyboard: Guest", time = 1000})
+--end)
+
+hl.define_submap("passthrough", function()
+ -- hl.notification.create({text = "Keyboard: Host", time = 1000})
+  hl.bind(mainMod .. " + code:34", hl.dsp.submap("reset"))
+--    hl.bind(mainMod .. " +code:34", function()
+--      hl.notification.create({text = "Keyboard: Host", time = 1000})
+--      hl.dsp.submap("reset") 
+--    end)
+end)
