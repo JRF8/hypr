@@ -30,11 +30,12 @@ hl.monitor({
 -- Set programs that you use
 local terminal    = "kitty"
 local fileManager = "dolphin"
-local menu        = "hyprlauncher"
 local launcher    = "rofi -show drun -show-icons"
 local screenshot  = "hyprshot -m region --clipboard-only"
 local pipewire    = "gentoo-pipewire-launcher restart &"
 local wallpaper   = "$HOME/.local/bin/wallpaper.sh"
+local chrome      = "google-chrome-stable --user-data-dir=$HOME/.config/google-chrome --class=google-chrome"
+local youtube     = "google-chrome-stable --new-window --user-data-dir=$HOME/.config/google-chrome-youtube --class=youtube --app=https://youtube.com"
 
 -------------------
 ---- AUTOSTART ----
@@ -268,7 +269,6 @@ local closeWindowBind = hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.close()
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
 -- Move focus with mainMod + arrow keys
@@ -276,6 +276,10 @@ hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+
+-- Chrome and youtube
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(chrome))
+hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(youtube))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
