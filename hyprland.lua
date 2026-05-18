@@ -349,6 +349,15 @@ hl.window_rule({
     no_focus = true,
 })
 
+hl.window_rule({
+  name = "work",
+  match = {
+    class = "com.freerdp.client.sdl",
+    fullscreen = true,
+    float = true,
+  },
+})
+
 -- Layer rules also return a handle.
 -- local overlayLayerRule = hl.layer_rule({
 --     name  = "no-anim-overlay",
@@ -373,17 +382,31 @@ hl.config({
 }
 )
 
+-- passthrough submap - allow guest to grab keyboard
+
 hl.bind(mainMod .. " + code:35", hl.dsp.submap("passthrough"))
---hl.bind(mainMod .. " + code:35", function()
---  hl.dsp.submap("passthrough")
---  hl.notification.create({text = "Keyboard: Guest", time = 1000})
---end)
 
 hl.define_submap("passthrough", function()
- -- hl.notification.create({text = "Keyboard: Host", time = 1000})
   hl.bind(mainMod .. " + code:34", hl.dsp.submap("reset"))
---    hl.bind(mainMod .. " +code:34", function()
---      hl.notification.create({text = "Keyboard: Host", time = 1000})
---      hl.dsp.submap("reset") 
---    end)
+end)
+
+-- window resize submap
+
+hl.bind(mainMod .. " + R", hl.dsp.submap("resize"))
+
+hl.define_submap("resize", function()
+  hl.bind(mainMod .. " + H", function()
+    hl.dispatch(hl.dsp.window.resize({ x = -50, y = 0, relative = true}))
+  end)
+  hl.bind(mainMod .. " + J", function()
+    hl.dispatch(hl.dsp.window.resize({ x = 0, y = 50, relative = true}))
+  end)
+  hl.bind(mainMod .. " + K", function()
+    hl.dispatch(hl.dsp.window.resize({ x = 0, y = -50, relative = true}))
+  end)
+  hl.bind(mainMod .. " + L", function()
+    hl.dispatch(hl.dsp.window.resize({ x = 50, y = 0, relative = true}))
+  end)
+
+  hl.bind(mainMod .. " + SHIFT + R", hl.dsp.submap("reset"))
 end)
