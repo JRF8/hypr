@@ -11,6 +11,7 @@
 
 -- Imports
 local media_keys = require("media_keys")
+local monitors = require("monitors")
 
 ------------------
 ---- MONITORS ----
@@ -341,10 +342,11 @@ hl.window_rule({
 hl.window_rule({
   name = "work",
   match = {
-    class = "com.freerdp.client.sdl",
-    fullscreen = true,
-    float = true,
+    class = "xfreerdp",
   },
+    fullscreen = false,
+    float = true,
+    opacity = "1.0 override"
 })
 
 -- Layer rules also return a handle.
