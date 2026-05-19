@@ -381,6 +381,7 @@ hl.define_submap("passthrough", function()
   media_keys.setup(mainMod)
   -- Reset to break out of passthrough
   hl.bind(mainMod .. " + code:34", hl.dsp.submap("reset"))
+  hl.bind(mainMod .. " + code:66", hl.dsp.submap("reset"))
 end)
 
 -- window resize submap
@@ -402,4 +403,5 @@ hl.define_submap("resize", function()
   end)
 
   hl.bind(mainMod .. " + SHIFT + R", hl.dsp.submap("reset"))
+  hl.bind(mainMod .. " + code:66", hl.dsp.submap("reset"))
 end)
