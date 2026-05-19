@@ -314,6 +314,16 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
+-- Alternate playerctl commands
+hl.bind(mainMod .. " + SHIFT + right",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
+hl.bind(mainMod .. " + SHIFT + up", hl.dsp.exec_cmd("playerctl play"), { locked = true })
+hl.bind(mainMod .. " + SHIFT + down",  hl.dsp.exec_cmd("playerctl pause"), { locked = true })
+hl.bind(mainMod .. " + SHIFT + left",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
+
+-- Alternate volume keys
+hl.bind(mainMod .. " + code:21", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
+hl.bind(mainMod .. " + code:20", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
+hl.bind(mainMod .. " + 0",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
@@ -386,6 +396,34 @@ hl.config({
 hl.bind(mainMod .. " + code:35", hl.dsp.submap("passthrough"))
 
 hl.define_submap("passthrough", function()
+
+  -- Let's allow media keys inside the passthrough to still go to the host
+  -- Laptop multimedia keys for volume and LCD brightness
+  hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
+  hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
+  hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
+  hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
+  hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
+  hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
+  
+  -- Requires playerctl
+  hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
+  hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+  hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+  hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
+  
+  -- Alternate playerctl commands
+  hl.bind(mainMod .. " + SHIFT + right",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
+  hl.bind(mainMod .. " + SHIFT + up", hl.dsp.exec_cmd("playerctl play"), { locked = true })
+  hl.bind(mainMod .. " + SHIFT + down",  hl.dsp.exec_cmd("playerctl pause"), { locked = true })
+  hl.bind(mainMod .. " + SHIFT + left",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
+  
+  -- Alternate volume keys
+  hl.bind(mainMod .. " + code:21", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
+  hl.bind(mainMod .. " + code:20", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
+  hl.bind(mainMod .. " + 0",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
+
+  -- Reset to break out of passthrough
   hl.bind(mainMod .. " + code:34", hl.dsp.submap("reset"))
 end)
 
