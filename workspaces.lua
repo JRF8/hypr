@@ -17,6 +17,11 @@ function W.setup()
   hl.workspace_rule({ workspace = "8", monitor = "desc:Samsung Electric Company Odyssey G40B HCJW60013" })
   hl.workspace_rule({ workspace = "9", monitor = "desc:Samsung Electric Company Odyssey G40B HCJW60013" })
   hl.workspace_rule({ workspace = "10", monitor = "desc:Samsung Electric Company Odyssey G40B HCJW60013" })
+
+
+  hl.workspace_rule({ workspace = "8", monitor = "desc:LG Electronics LG FULL HD 0x0101010" })
+  hl.workspace_rule({ workspace = "9", monitor = "desc:Acer Technologies KA242Y 72380FE9C3W0" })
+  hl.workspace_rule({ workspace = "10", monitor = "desc:Acer Technologies KA242Y 72380FE9C3W0" })
 end
 
 return W
