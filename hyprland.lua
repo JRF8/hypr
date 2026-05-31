@@ -13,6 +13,11 @@
 local media_keys = require("media_keys")
 local monitors = require("monitors")
 local workspaces = require("workspaces")
+local keybinds = require("keybinds")
+local submaps = require("submaps")
+
+
+local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 ------------------
 ---- MONITORS ----
@@ -27,21 +32,6 @@ monitors.setup()
 
 workspaces.setup()
 
----------------------
----- MY PROGRAMS ----
----------------------
-
--- Set programs that you use
-local terminal    = "kitty"
-local fileManager = "dolphin"
-local launcher    = "rofi -show drun -show-icons"
-local screenshot  = "hyprshot -m region --clipboard-only"
-local pipewire    = "gentoo-pipewire-launcher restart &"
-local wallpaper   = "$HOME/.local/bin/wallpaper.sh"
-local chrome      = "google-chrome-stable --user-data-dir=$HOME/.config/google-chrome --class=google-chrome"
-local youtube     =
-"google-chrome-stable --new-window --user-data-dir=$HOME/.config/google-chrome-youtube --class=youtube --app=https://youtube.com"
-
 -------------------
 ---- AUTOSTART ----
 -------------------
@@ -52,13 +42,13 @@ local youtube     =
 -- Or execute your favorite apps at launch like this:
 --
 
+local pipewire = "gentoo-pipewire-launcher restart &"
+
 hl.on("hyprland.start", function()
   hl.exec_cmd(pipewire)
   hl.exec_cmd("waybar")
   hl.exec_cmd("hyprpaper")
 end)
-
-
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
@@ -242,50 +232,7 @@ hl.device({
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
-
-local mainMod = "SUPER" -- Sets "Windows" key as main modifier
-
--- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(launcher))
-hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(screenshot))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(wallpaper))
-local closeWindowBind = hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.close())
--- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + SHIFT + Q",
-  hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-
--- Move focus with mainMod + vim keys
-hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
-
--- Chrome and youtube
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(chrome))
-hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(youtube))
-
--- Switch workspaces with mainMod + [0-9]
--- Move active window to a workspace with mainMod + SHIFT + [0-9]
-for i = 1, 10 do
-  local key = i % 10 -- 10 maps to key 0
-  hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-  hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
-end
-
--- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
-
--- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
-
--- Move/resize windows with mainMod + LMB/RMB and dragging
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+keybinds.setup(mainMod)
 
 -- Media keys
 media_keys.setup(mainMod)
@@ -357,36 +304,6 @@ hl.config({
 }
 )
 
--- passthrough submap - allow guest to grab keyboard
 
-hl.bind(mainMod .. " + code:35", hl.dsp.submap("passthrough"))
-
-hl.define_submap("passthrough", function()
-  -- Let's allow media keys inside the passthrough to still go to the host
-  media_keys.setup(mainMod)
-  -- Reset to break out of passthrough
-  hl.bind(mainMod .. " + code:34", hl.dsp.submap("reset"))
-  hl.bind(mainMod .. " + code:66", hl.dsp.submap("reset"))
-end)
-
--- window resize submap
-
-hl.bind(mainMod .. " + R", hl.dsp.submap("resize"))
-
-hl.define_submap("resize", function()
-  hl.bind(mainMod .. " + H", function()
-    hl.dispatch(hl.dsp.window.resize({ x = -50, y = 0, relative = true }))
-  end)
-  hl.bind(mainMod .. " + J", function()
-    hl.dispatch(hl.dsp.window.resize({ x = 0, y = 50, relative = true }))
-  end)
-  hl.bind(mainMod .. " + K", function()
-    hl.dispatch(hl.dsp.window.resize({ x = 0, y = -50, relative = true }))
-  end)
-  hl.bind(mainMod .. " + L", function()
-    hl.dispatch(hl.dsp.window.resize({ x = 50, y = 0, relative = true }))
-  end)
-
-  hl.bind(mainMod .. " + SHIFT + R", hl.dsp.submap("reset"))
-  hl.bind(mainMod .. " + code:66", hl.dsp.submap("reset"))
-end)
+-- SUBMAPS --
+submaps.setup(mainMod, media_keys)
