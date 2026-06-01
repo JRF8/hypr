@@ -1,13 +1,13 @@
 local S = {}
 
-function S.setup(mainMod, media_keys)
+function S.setup(mainMod, keybinds)
   -- passthrough submap - allow guest to grab keyboard
 
   hl.bind(mainMod .. " + code:35", hl.dsp.submap("passthrough"))
 
   hl.define_submap("passthrough", function()
     -- Let's allow media keys inside the passthrough to still go to the host
-    media_keys.setup(mainMod)
+    keybinds.setup_mediakeys(mainMod)
     -- Reset to break out of passthrough
     hl.bind(mainMod .. " + code:34", hl.dsp.submap("reset"))
     hl.bind(mainMod .. " + code:66", hl.dsp.submap("reset"))

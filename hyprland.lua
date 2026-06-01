@@ -10,7 +10,6 @@
 -- require("myColors")
 
 -- Imports
-local media_keys = require("media_keys")
 local monitors = require("monitors")
 local keybinds = require("keybinds")
 local submaps = require("submaps")
@@ -231,10 +230,10 @@ hl.device({
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
-keybinds.setup(mainMod)
+keybinds.setup_keybinds(mainMod)
+keybinds.setup_mediakeys(mainMod)
 
--- Media keys
-media_keys.setup(mainMod)
+
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
@@ -305,4 +304,4 @@ hl.config({
 
 
 -- SUBMAPS --
-submaps.setup(mainMod, media_keys)
+submaps.setup(mainMod, keybinds)
