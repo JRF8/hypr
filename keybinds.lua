@@ -2,18 +2,20 @@ local K = {}
 
 function K.setup(mainMod)
   -- set up commands
-  local terminal    = "kitty"
-  local fileManager = "dolphin"
-  local launcher    = "rofi -show drun -show-icons"
-  local screenshot  = "hyprshot -m region --clipboard-only"
-  local chrome      = "google-chrome-stable --user-data-dir=$HOME/.config/google-chrome --class=google-chrome"
-  local youtube     =
+  local terminal       = "kitty"
+  local fileManager    = "dolphin"
+  local launcher       = "rofi -show drun -show-icons"
+  local screenshot     = "hyprshot -m region --clipboard-only"
+  local chrome         = "google-chrome-stable --user-data-dir=$HOME/.config/google-chrome --class=google-chrome"
+  local youtube        =
   "google-chrome-stable --new-window --user-data-dir=$HOME/.config/google-chrome-youtube --class=youtube --app=https://youtube.com"
-  local wallpaper   = "$HOME/.local/bin/wallpaper.sh"
+  local wallpaper      = "$HOME/.local/bin/wallpaper.sh"
+  local profile_switch = "$HOME/.config/hypr/profile-picker.sh"
 
   -- set up keybinds
   hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
   hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(launcher))
+  hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd(profile_switch))
   hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(screenshot))
   hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(wallpaper))
   local closeWindowBind = hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.close())

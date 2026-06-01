@@ -12,7 +12,6 @@
 -- Imports
 local media_keys = require("media_keys")
 local monitors = require("monitors")
-local workspaces = require("workspaces")
 local keybinds = require("keybinds")
 local submaps = require("submaps")
 
@@ -30,7 +29,7 @@ monitors.setup()
 ---- WORKSPACES ----
 ------------------
 
-workspaces.setup()
+require("cur_profile")
 
 -------------------
 ---- AUTOSTART ----
