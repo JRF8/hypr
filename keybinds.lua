@@ -2,7 +2,7 @@ local K = {}
 
 function K.setup_keybinds(mainMod)
   -- set up commands
-  local terminal       = "kitty"
+  local terminal       = os.getenv("TERMINAL") or "kitty"
   local fileManager    = "dolphin"
   local launcher       = "rofi -show drun -show-icons"
   local screenshot     = "hyprshot -m region --clipboard-only"
@@ -25,11 +25,20 @@ function K.setup_keybinds(mainMod)
   hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
   hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 
+  -- lock screen
+  hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("hyprlock"))
+
   -- Move focus with mainMod + vim keys
   hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
   hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
   hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
   hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+
+  -- Move a window in a direction with mainMod + vim keys
+  hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
+  hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
+  hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
+  hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
 
   -- Chrome and youtube
   hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(chrome))
