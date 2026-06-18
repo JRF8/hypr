@@ -23,6 +23,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 monitors.setup()
+monitors.handle_lid_events()
 
 ------------------
 ---- WORKSPACES ----
