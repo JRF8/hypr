@@ -47,7 +47,15 @@ end
 
 function M.handle_lid_events()
   hl.bind("switch:on:Lid Switch", function()
-    hl.monitor({ output = "eDP-1", disabled = true })
+    local num_mons = 1
+    local handle = io.popen("hyprctl monitors -j | jq '. | length'")
+    if handle then
+      num_mons = tonumber(handle:read("*a")) or 1
+      handle:close()
+    end
+    if num_mons > 1 then
+      hl.monitor({ output = "eDP-1", disabled = true })
+    end
   end, { locked = true })
   hl.bind("switch:off:Lid Switch", function()
     hl.monitor({ output = "eDP-1", disabled = false })
