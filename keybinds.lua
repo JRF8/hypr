@@ -11,6 +11,7 @@ function K.setup_keybinds(mainMod)
   "google-chrome-stable --new-window --user-data-dir=$HOME/.config/google-chrome-youtube --class=youtube --app=https://youtube.com"
   local wallpaper      = "$HOME/.local/bin/wallpaper.sh"
   local profile_switch = "$HOME/.config/hypr/profile-picker.sh"
+  local locker         = "dms ipc call lock lock"
 
   -- set up keybinds
   hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
@@ -26,7 +27,9 @@ function K.setup_keybinds(mainMod)
   hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 
   -- lock screen
-  hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("hyprlock"))
+  -- hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("hyprlock"))
+  hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(locker))
+
 
   -- Move focus with mainMod + vim keys
   hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
