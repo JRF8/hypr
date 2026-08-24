@@ -14,6 +14,7 @@ local monitors = require("monitors")
 local keybinds = require("keybinds")
 local submaps = require("submaps")
 local lookandfeel = require("lookandfeel")
+local plugins = require("plugins")
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
@@ -125,6 +126,10 @@ hl.gesture({
   direction = "horizontal",
   action = "workspace"
 })
+
+-- Load hymission keybinds and gestures
+plugins.hymission(mainMod)
+
 
 -- Example per-device config
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
