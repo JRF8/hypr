@@ -6,9 +6,10 @@ function K.setup_keybinds(mainMod)
   local fileManager    = "dolphin"
   local launcher       = "rofi -show drun -show-icons"
   local screenshot     = "hyprshot -m region --clipboard-only"
-  local chrome         = "google-chrome-stable --user-data-dir=$HOME/.config/google-chrome --class=google-chrome"
+  local chrome         =
+  "google-chrome-stable --user-data-dir=$HOME/.config/google-chrome --class=google-chrome --password-store=basic"
   local youtube        =
-  "google-chrome-stable --new-window --user-data-dir=$HOME/.config/google-chrome-youtube --class=youtube --app=https://youtube.com"
+  "google-chrome-stable --new-window --user-data-dir=$HOME/.config/google-chrome-youtube --class=youtube --app=https://youtube.com --password-store=basic"
   local wallpaper      = "$HOME/.local/bin/wallpaper.sh"
   local profile_switch = "$HOME/.config/hypr/profile-picker.sh"
   local locker         = "dms ipc call lock lock"
