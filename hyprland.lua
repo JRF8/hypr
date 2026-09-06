@@ -18,6 +18,9 @@ local plugins = require("plugins")
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
+-- Load plugins on launch
+plugins.load_plugins()
+
 ------------------
 ---- MONITORS ----
 ------------------

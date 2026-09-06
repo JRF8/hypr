@@ -30,4 +30,10 @@ function P.hymission(mainMod)
   })
 end
 
+function P.load_plugins()
+  hl.on("hyprland.start", function()
+    hl.exec_cmd("hyprpm reload")
+  end)
+end
+
 return P
