@@ -48,12 +48,12 @@ require("cur_profile")
 local pipewire = "gentoo-pipewire-launcher restart &"
 
 hl.on("hyprland.start", function()
-  hl.exec_cmd(pipewire)
-  --  hl.exec_cmd("waybar")
-  hl.exec_cmd("dms run")
-  -- hl.exec_cmd("hyprpaper")
-  -- hl.exec_cmd("swaync")
-  hl.exec_cmd("hypridle")
+	hl.exec_cmd(pipewire)
+	--  hl.exec_cmd("waybar")
+	--  hl.exec_cmd("dms run")
+	-- hl.exec_cmd("hyprpaper")
+	-- hl.exec_cmd("swaync")
+	hl.exec_cmd("hypridle")
 end)
 
 -------------------------------
@@ -64,7 +64,6 @@ end)
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("XDG_DATA_DIRS", "$HOME/.local/share:/usr/local/share:/usr/share")
 
 -----------------------
 ----- PERMISSIONS -----
@@ -84,7 +83,6 @@ hl.env("XDG_DATA_DIRS", "$HOME/.local/share:/usr/local/share:/usr/share")
 -- hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
 -- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
 
-
 -----------------------
 ---- LOOK AND FEEL ----
 -----------------------
@@ -95,60 +93,55 @@ lookandfeel.setup()
 ----------------
 
 hl.config({
-  misc = {
-    force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
-    disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
-  },
+	misc = {
+		force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
+		disable_hyprland_logo = false, -- If true disables the random hyprland logo / anime girl background. :(
+	},
 })
-
 
 ---------------
 ---- INPUT ----
 ---------------
 
 hl.config({
-  input = {
-    kb_layout    = "us",
-    kb_variant   = "",
-    kb_model     = "",
-    kb_options   = "",
-    kb_rules     = "",
+	input = {
+		kb_layout = "us",
+		kb_variant = "",
+		kb_model = "",
+		kb_options = "",
+		kb_rules = "",
 
-    follow_mouse = 1,
+		follow_mouse = 1,
 
-    sensitivity  = 0, -- -1.0 - 1.0, 0 means no modification.
+		sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
 
-    touchpad     = {
-      natural_scroll = true,
-    },
-  },
+		touchpad = {
+			natural_scroll = true,
+		},
+	},
 })
 
 hl.gesture({
-  fingers = 3,
-  direction = "horizontal",
-  action = "workspace"
+	fingers = 3,
+	direction = "horizontal",
+	action = "workspace",
 })
 
 -- Load hymission keybinds and gestures
-plugins.hymission(mainMod)
-
+-- plugins.hymission(mainMod)
 
 -- Example per-device config
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
 hl.device({
-  name        = "epic-mouse-v1",
-  sensitivity = -0.5,
+	name = "epic-mouse-v1",
+	sensitivity = -0.5,
 })
-
 
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
 keybinds.setup_keybinds(mainMod)
 keybinds.setup_mediakeys(mainMod)
-
-
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
@@ -160,37 +153,37 @@ keybinds.setup_mediakeys(mainMod)
 -- Example window rules that are useful
 
 local suppressMaximizeRule = hl.window_rule({
-  -- Ignore maximize requests from all apps. You'll probably like this.
-  name           = "suppress-maximize-events",
-  match          = { class = ".*" },
+	-- Ignore maximize requests from all apps. You'll probably like this.
+	name = "suppress-maximize-events",
+	match = { class = ".*" },
 
-  suppress_event = "maximize",
+	suppress_event = "maximize",
 })
 -- suppressMaximizeRule:set_enabled(false)
 
 hl.window_rule({
-  -- Fix some dragging issues with XWayland
-  name     = "fix-xwayland-drags",
-  match    = {
-    class      = "^$",
-    title      = "^$",
-    xwayland   = true,
-    float      = true,
-    fullscreen = false,
-    pin        = false,
-  },
+	-- Fix some dragging issues with XWayland
+	name = "fix-xwayland-drags",
+	match = {
+		class = "^$",
+		title = "^$",
+		xwayland = true,
+		float = true,
+		fullscreen = false,
+		pin = false,
+	},
 
-  no_focus = true,
+	no_focus = true,
 })
 
 hl.window_rule({
-  name = "work",
-  match = {
-    class = "xfreerdp",
-  },
-  fullscreen = false,
-  float = true,
-  opacity = "1.0 override"
+	name = "work",
+	match = {
+		class = "xfreerdp",
+	},
+	fullscreen = false,
+	float = true,
+	opacity = "1.0 override",
 })
 
 -- Layer rules also return a handle.
@@ -203,20 +196,18 @@ hl.window_rule({
 
 -- Hyprland-run windowrule
 hl.window_rule({
-  name  = "move-hyprland-run",
-  match = { class = "hyprland-run" },
+	name = "move-hyprland-run",
+	match = { class = "hyprland-run" },
 
-  move  = "20 monitor_h-120",
-  float = true,
+	move = "20 monitor_h-120",
+	float = true,
 })
 
 hl.config({
-  input = {
-    kb_options = "caps:none"
-  }
-}
-)
-
+	input = {
+		kb_options = "caps:none",
+	},
+})
 
 -- SUBMAPS --
 submaps.setup(mainMod, keybinds)
