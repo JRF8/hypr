@@ -5,11 +5,22 @@ return {
   hl.workspace_rule({ workspace = "4", monitor = "eDP-1" }),
   hl.workspace_rule({ workspace = "5", monitor = "eDP-1" }),
 
-
   hl.workspace_rule({ workspace = "6", monitor = "desc:Samsung Electric Company Odyssey G40B HCJW60013" }),
   hl.workspace_rule({ workspace = "7", monitor = "desc:Samsung Electric Company Odyssey G40B HCJW60013" }),
   hl.workspace_rule({ workspace = "8", monitor = "desc:Samsung Electric Company Odyssey G40B HCJW60013" }),
   hl.workspace_rule({ workspace = "9", monitor = "desc:Samsung Electric Company Odyssey G40B HCJW60013" }),
   hl.workspace_rule({ workspace = "10", monitor = "desc:Samsung Electric Company Odyssey G40B HCJW60013" }),
+
+
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "1", monitor = "eDP-1" })),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "2", monitor = "eDP-1" })),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "3", monitor = "eDP-1" })),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "4", monitor = "eDP-1" })),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "5", monitor = "eDP-1" })),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "6", monitor = "desc:Samsung Electric Company Odyssey G40B HCJW60013" })),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "7", monitor = "desc:Samsung Electric Company Odyssey G40B HCJW60013" })),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "8", monitor = "desc:Samsung Electric Company Odyssey G40B HCJW60013" })),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "9", monitor = "desc:Samsung Electric Company Odyssey G40B HCJW60013" })),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "10", monitor = "desc:Samsung Electric Company Odyssey G40B HCJW60013" }))
 
 }
