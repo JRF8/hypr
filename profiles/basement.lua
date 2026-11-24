@@ -10,4 +10,18 @@ return {
   hl.workspace_rule({ workspace = "8", monitor = "desc:Acer Technologies KA242Y 72380FE9C3W0" }),
   hl.workspace_rule({ workspace = "9", monitor = "desc:Acer Technologies KA242Y 72380FE9C3W0" }),
   hl.workspace_rule({ workspace = "10", monitor = "desc:Acer Technologies KA242Y 72380FE9C3W0" }),
+
+
+
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "1", monitor = "desc:LG Electronics LG FULL HD 0x0101010" }),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "2", monitor = "desc:LG Electronics LG FULL HD 0x0101010" }),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "3", monitor = "desc:LG Electronics LG FULL HD 0x0101010" }),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "4", monitor = "eDP-1" }),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "5", monitor = "eDP-1" }),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "6", monitor = "eDP-1" }),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "7", monitor = "eDP-1" }),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "8", monitor = "eDP-1" }),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "8", monitor = "desc:Acer Technologies KA242Y 72380FE9C3W0" }),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "9", monitor = "desc:Acer Technologies KA242Y 72380FE9C3W0" }),
+  hl.dispatch(hl.dsp.workspace.move({ workspace = "10", monitor = "desc:Acer Technologies KA242Y 72380FE9C3W0" }),
 }
