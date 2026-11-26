@@ -18,6 +18,16 @@ local plugins = require("plugins")
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
+-- Helper Functions
+local function file_exists(path)
+	local f = io.open(path, "r")
+	if f then
+		f:close()
+		return true
+	end
+	return false
+end
+
 -- Load plugins on launch
 plugins.load_plugins()
 
@@ -32,8 +42,9 @@ monitors.handle_lid_events()
 ------------------
 ---- WORKSPACES ----
 ------------------
-
-require("cur_profile")
+if file_exists(os.getenv("HOME") .. "/.config/hypr/cur_profile.lua") then
+	require("cur_profile")
+end
 
 -------------------
 ---- AUTOSTART ----
