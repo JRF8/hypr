@@ -15,21 +15,12 @@ local keybinds = require("keybinds")
 local submaps = require("submaps")
 local lookandfeel = require("lookandfeel")
 local plugins = require("plugins")
+local lib = require("library")
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
--- Helper Functions
-local function file_exists(path)
-	local f = io.open(path, "r")
-	if f then
-		f:close()
-		return true
-	end
-	return false
-end
-
 -- Load plugins on launch
-plugins.load_plugins()
+plugins.load_plugins(lib)
 
 ------------------
 ---- MONITORS ----
@@ -42,7 +33,8 @@ monitors.handle_lid_events()
 ------------------
 ---- WORKSPACES ----
 ------------------
-if file_exists(os.getenv("HOME") .. "/.config/hypr/cur_profile.lua") then
+
+if lib.file_exists(os.getenv("HOME") .. "/.config/hypr/cur_profile.lua") then
 	require("cur_profile")
 end
 
