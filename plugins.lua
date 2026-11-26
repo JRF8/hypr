@@ -4,6 +4,9 @@ local P = {}
 local HYMISSION_SO = "/run/current-system/sw/lib/libhymission.so"
 
 function P.hymission(mainMod)
+	if not (hl.plugin and hl.plugin.hymission) then
+		return
+	end
 	hl.gesture({
 		fingers = 3,
 		direction = "up",
